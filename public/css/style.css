@@ -1,0 +1,12 @@
+.navbar-dark .nav-item .nav-link {
+	color: white;
+	opacity: .8;
+}
+.navbar-dark .nav-item .nav-link:hover {
+	color: white;
+	opacity: 1
+}
+.navbar-dark .nav-item.active .nav-link {
+	color: white;
+	opacity: 1 !important;
+}
