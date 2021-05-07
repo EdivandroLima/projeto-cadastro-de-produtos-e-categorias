@@ -90,7 +90,7 @@
 	                <div class="modal-body">
 	                    <div class="form-group">
 							<label for="nome" class="sr-only">Nome</label>
-							<input type="text" name="nome" placeholder="Nome" class="form-control form-control-lg {{$errors->has('nome')?'is-invalid':''}}">
+							<input required type="text" name="nome" placeholder="Nome" class="form-control form-control-lg {{$errors->has('nome')?'is-invalid':''}}">
 
 							@if($errors->has('nome'))
 								<div class="invalid-feedback">
@@ -125,7 +125,7 @@
 	                    <div class="form-group">
 	                    	<input type="hidden" name="id_categoria" id='id_categoria'>
 							<label for="editar_nome" class="sr-only">Nome</label>
-							<input id="editar_nome" type="text" name="editar_nome" placeholder="Nome" class="form-control form-control-lg {{$errors->has('editar_nome')?'is-invalid':''}}">
+							<input required id="editar_nome" type="text" name="editar_nome" placeholder="Nome" class="form-control form-control-lg {{$errors->has('editar_nome')?'is-invalid':''}}">
 
 							@if($errors->has('editar_nome'))
 								<div class="invalid-feedback">

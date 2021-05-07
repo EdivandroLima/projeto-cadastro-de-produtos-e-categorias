@@ -46,7 +46,10 @@ class CategoriaController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'nome'=> 'required|min:3|'.Rule::unique('categorias')->where('user_id',Auth::id())->where('nome', $request->nome)
+            'nome'=> [
+                'required','min:3',
+                Rule::unique('categorias')->where('user_id',Auth::id())->where('nome', $request->nome)
+            ]
         ]);
 
         $cat= new Categoria();

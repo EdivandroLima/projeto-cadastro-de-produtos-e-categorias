@@ -47,9 +47,12 @@ class ProdutoController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'nome'=> 'required|min:3|'.Rule::unique('produtos')->where('user_id',Auth::id())->where('nome', $request->nome),
-            'preco'=> 'required|integer',
-            'estoque'=> 'required|integer',
+            'nome'=> [
+                'required', 'min:3',
+                Rule::unique('produtos')->where('user_id',Auth::id())->where('nome', $request->nome)
+            ],
+            'preco'=> 'required',
+            'estoque'=> 'required',
             'categoria'=> 'required|exists:categorias,id',
         ]);
 
@@ -98,8 +101,8 @@ class ProdutoController extends Controller
             'id_produto'=> 'exists:produtos,id',
             'editar_nome'=> 'required|min:3',
             // 'editar_nome'=> 'required|min:3|unique:produtos,nome',
-            'editar_preco'=> 'required|integer',
-            'editar_estoque'=> 'required|integer',
+            'editar_preco'=> 'required',
+            'editar_estoque'=> 'required',
             'editar_categoria'=> 'required|exists:categorias,id',
         ]);
 

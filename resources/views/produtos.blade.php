@@ -57,7 +57,7 @@
 					<tr>
 						<td>{{$prod->id}}</td>
 						<td>{{$prod->nome}}</td>
-						<td>R$ {{number_format($prod->preco)}}</td>
+						<td>{{'R$ '.number_format($prod->preco, 2, ',', '.')}}</td>
 						<td>{{$prod->estoque}}</td>
 						<td>{{$prod->categoria->nome}}</td>
 						<td>
@@ -96,7 +96,7 @@
 
 	                    <div class="form-group col-12">
 							<label for="nome" class="sr-only">Nome</label>
-							<input id="nome" type="text" name="nome" placeholder="Nome" class="form-control {{$errors->has('nome')?'is-invalid':''}}">
+							<input required id="nome" type="text" name="nome" placeholder="Nome" class="form-control {{$errors->has('nome')?'is-invalid':''}}">
 							@if($errors->has('nome'))
 								<div class="invalid-feedback">
 									{{$errors->first('nome')}}
@@ -106,7 +106,7 @@
 
 						<div class="form-group col-6">
 							<label for="preco" class="sr-only">Preço</label>
-							<input id="preco" type="number" name="preco" placeholder="Preço" class="form-control {{$errors->has('preco')?'is-invalid':''}}">
+							<input required id="preco" type="number" step="any" name="preco" placeholder="Preço" class="form-control {{$errors->has('preco')?'is-invalid':''}}">
 							@if($errors->has('preco'))
 								<div class="invalid-feedback">
 									{{$errors->first('preco')}}
@@ -116,7 +116,7 @@
 
 						<div class="form-group col-6">
 							<label for="estoque" class="sr-only">Estoque</label>
-							<input id="estoque" type="number" name="estoque" placeholder="Estoque" class="form-control {{$errors->has('estoque')?'is-invalid':''}}">
+							<input required id="estoque" type="number" step="any" name="estoque" placeholder="Estoque" class="form-control {{$errors->has('estoque')?'is-invalid':''}}">
 							@if($errors->has('estoque'))
 								<div class="invalid-feedback">
 									{{$errors->first('estoque')}}
@@ -127,7 +127,7 @@
 						<div class="form-group col-12">
 							<label for="categoria" class="sr-only">Categoria</label>
 							<select id="categoria" name="categoria" class="custom-select {{$errors->has('categoria')?'is-invalid':''}}">
-								<option>-- Selecione uma categoria --</option>
+								<option value="0">-- Selecione uma categoria --</option>
 								@foreach($categorias as $cat)
 
 								<option value="{{$cat->id}}">{{$cat->nome}}</option>
@@ -171,7 +171,7 @@
 
 	                    <div class="form-group col-12">
 							<label for="editar_nome" class="sr-only">Nome</label>
-							<input id="editar_nome" type="text" name="editar_nome" placeholder="Nome" class="form-control {{$errors->has('editar_nome')?'is-invalid':''}}">
+							<input required id="editar_nome" type="text" name="editar_nome" placeholder="Nome" class="form-control {{$errors->has('editar_nome')?'is-invalid':''}}">
 							@if($errors->has('editar_nome'))
 								<div class="invalid-feedback">
 									{{$errors->first('editar_nome')}}
@@ -181,7 +181,7 @@
 
 						<div class="form-group col-6">
 							<label for="editar_preco" class="sr-only">Preço</label>
-							<input id="editar_preco" type="number" name="editar_preco" placeholder="Preço" class="form-control {{$errors->has('editar_preco')?'is-invalid':''}}">
+							<input required id="editar_preco" type="number" step="any" name="editar_preco" placeholder="Preço" class="form-control {{$errors->has('editar_preco')?'is-invalid':''}}">
 							@if($errors->has('editar_preco'))
 								<div class="invalid-feedback">
 									{{$errors->first('editar_preco')}}
@@ -191,7 +191,7 @@
 
 						<div class="form-group col-6">
 							<label for="editar_estoque" class="sr-only">Estoque</label>
-							<input id="editar_estoque" type="number" name="editar_estoque" placeholder="Estoque" class="form-control {{$errors->has('editar_estoque')?'is-invalid':''}}">
+							<input required id="editar_estoque" type="number" step="any" name="editar_estoque" placeholder="Estoque" class="form-control {{$errors->has('editar_estoque')?'is-invalid':''}}">
 							@if($errors->has('editar_estoque'))
 								<div class="invalid-feedback">
 									{{$errors->first('editar_estoque')}}
@@ -253,6 +253,7 @@
     			$('#id_produto').val(id)
 				$('#editarproduto').modal('show')
 			}
+
     	</script>
     @endsection
 
