@@ -19,20 +19,14 @@ class ProdutoFactory extends Factory
      *
      * @return array
      */
-    public function definition() 
+    public function definition()
     {
         return [
             'nome' => $this->faker->unique()->realText(15),
-            'estoque' => $this->faker->numberBetween(1,30),
-            'preco' => $this->faker->numberBetween(1000,5000),
-            // 'status' => $this->faker->randomElement([true, false]),
+            'estoque' => $this->faker->numberBetween(1, 30),
+            'preco' => $this->faker->numberBetween(1000, 5000),
             'categoria_id' => $this->faker->numberBetween(2, 15),
-            'user_id'=>1,
+            'user_id' => 1,
         ];
     }
 }
-
-
-
-
-

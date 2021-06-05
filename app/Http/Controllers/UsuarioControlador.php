@@ -13,40 +13,33 @@ class UsuarioControlador extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
-
-    	return view('editar-foto');
-
+        return view('editar-foto');
     }
 
     public function update(Request $request, $id)
     {
-    	$request->validate([
-    		'foto_usuario'=>'required'
-    	]);
+        $request->validate([
+            'foto_usuario' => 'required'
+        ]);
 
-    	if (Auth::user()->id == $id) {
+        if (Auth::user()->id == $id) {
 
-    		$arquivo= Auth::user()->img_perfil;
-	        if (!empty($arquivo)) {
-	        	Storage::disk('public')->delete($arquivo);
-	        }
+            $arquivo = Auth::user()->img_perfil;
+            if (!empty($arquivo)) {
+                Storage::disk('public')->delete($arquivo);
+            }
 
-    		$path= $request->file('foto_usuario')->store('img/perfil', 'public');
+            $path = $request->file('foto_usuario')->store('img/perfil', 'public');
 
-	        $user= User::find($id);
-	        $user->img_perfil= $path;
-	        $user->save();
-	        return redirect()->route('editarfoto');
-	    }
+            $user = User::find($id);
+            $user->img_perfil = $path;
+            $user->save();
+            return redirect()->route('editarfoto');
+        }
 
-    	return response('Erro de usuário', 404);
+        return response('Erro de usuário', 404);
     }
-
 }
-
-
-
-

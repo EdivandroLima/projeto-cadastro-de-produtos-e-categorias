@@ -23,7 +23,7 @@ class CategoriaFactory extends Factory
     {
         return [
             'nome' => $this->faker->unique()->realText(10),
-            'user_id'=>1,
+            'user_id' => 1,
         ];
     }
 }

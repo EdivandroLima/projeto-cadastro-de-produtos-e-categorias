@@ -19,12 +19,12 @@ class ProdutoController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
 
-        $produtos= Produto::where('user_id', Auth::id())->paginate(10);
-        $categorias= Categoria::where('user_id', Auth::id())->get();
+        $produtos = Produto::where('user_id', Auth::id())->paginate(10);
+        $categorias = Categoria::where('user_id', Auth::id())->get();
         return view('produtos', compact(['produtos', 'categorias']));
     }
 
@@ -35,7 +35,6 @@ class ProdutoController extends Controller
      */
     public function create()
     {
-        
     }
 
     /**
@@ -47,23 +46,23 @@ class ProdutoController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'nome'=> [
+            'nome' => [
                 'required', 'min:3',
-                Rule::unique('produtos')->where('user_id',Auth::id())->where('nome', $request->nome)
+                Rule::unique('produtos')->where('user_id', Auth::id())->where('nome', $request->nome)
             ],
-            'preco'=> 'required',
-            'estoque'=> 'required',
-            'categoria'=> 'required|exists:categorias,id',
+            'preco' => 'required',
+            'estoque' => 'required',
+            'categoria' => 'required|exists:categorias,id',
         ]);
 
-        $prod= new Produto();
-        $prod->nome= $request->nome;
-        $prod->preco= $request->preco;
-        $prod->user_id= Auth::id();
-        $prod->estoque= $request->estoque;
-        $prod->categoria_id= $request->categoria;
+        $prod = new Produto();
+        $prod->nome = $request->nome;
+        $prod->preco = $request->preco;
+        $prod->user_id = Auth::id();
+        $prod->estoque = $request->estoque;
+        $prod->categoria_id = $request->categoria;
         $prod->save();
-        return redirect()->route('produtos.index','add=success');
+        return redirect()->route('produtos.index', 'add=success');
     }
 
     /**
@@ -98,22 +97,21 @@ class ProdutoController extends Controller
     public function update(Request $request)
     {
         $this->validate($request, [
-            'id_produto'=> 'exists:produtos,id',
-            'editar_nome'=> 'required|min:3',
-            // 'editar_nome'=> 'required|min:3|unique:produtos,nome',
-            'editar_preco'=> 'required',
-            'editar_estoque'=> 'required',
-            'editar_categoria'=> 'required|exists:categorias,id',
+            'id_produto' => 'exists:produtos,id',
+            'editar_nome' => 'required|min:3',
+            'editar_preco' => 'required',
+            'editar_estoque' => 'required',
+            'editar_categoria' => 'required|exists:categorias,id',
         ]);
 
-        $prod= Produto::find($request->id_produto);
+        $prod = Produto::find($request->id_produto);
         if (isset($prod)) {
-            $prod->nome= $request->editar_nome;
-            $prod->preco= $request->editar_preco;
-            $prod->estoque= $request->editar_estoque;
-            $prod->categoria_id= $request->editar_categoria;
+            $prod->nome = $request->editar_nome;
+            $prod->preco = $request->editar_preco;
+            $prod->estoque = $request->editar_estoque;
+            $prod->categoria_id = $request->editar_categoria;
             $prod->save();
-            return redirect()->route('produtos.index','add=success');
+            return redirect()->route('produtos.index', 'add=success');
 
             echo "<pre>";
             print_r($request->all());
@@ -129,11 +127,11 @@ class ProdutoController extends Controller
      */
     public function destroy($id)
     {
-        $prod= Produto::find($id);
-        
+        $prod = Produto::find($id);
+
         if (isset($prod) && (Auth::id() == $prod->user_id)) {
             $prod->delete();
-            return redirect()->route('produtos.index','delete=success');
+            return redirect()->route('produtos.index', 'delete=success');
         }
         return response('Produto não foi encontrada!', 404);
     }

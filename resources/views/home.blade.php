@@ -5,13 +5,15 @@
     <h1 class="h2 text-center mt-5 text-uppercase">Cadastro de Produtos e Categorias</h1>
 
     <div class="jumbotron bg-light my-5">
-            <div class="card-columns">
+        <div class="card-columns">
             <div class="card bg-warning">{{-- Card --}}
                 <div class="card-body">
                     <h3 class="card-title">Sobre</h3>
                     <p class="card-text">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam tncididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam t labore et dolore magna aliqua. Ut enim ad minim veniam
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam tncididunt ut labore et
+                        dolore magna aliqua. Ut enim ad minim veniam t labore et dolore magna aliqua. Ut enim ad minim
+                        veniam
                     </p>
                 </div>
             </div>{{-- /Card --}}
@@ -24,7 +26,8 @@
                     </p>
                 </div>
                 <div class="card-footer">
-                    <a href="{{route('produtos.index')}}" class="btn btn-outline-light btn-block  ">Produtos <i class="fas fa-arrow-right fa-sm ml-2"></i></a>
+                    <a href="{{ route('produtos.index') }}" class="btn btn-outline-light btn-block  ">Produtos <i
+                            class="fas fa-arrow-right fa-sm ml-2"></i></a>
                 </div>
             </div>{{-- /Card --}}
 
@@ -37,11 +40,12 @@
                     </p>
                 </div>
                 <div class="card-footer">
-                    <a href="{{route('categorias.index')}}" class="btn btn-outline-light btn-block  ">Categorias <i class="fas fa-arrow-right fa-sm ml-2"></i></a>
+                    <a href="{{ route('categorias.index') }}" class="btn btn-outline-light btn-block  ">Categorias <i
+                            class="fas fa-arrow-right fa-sm ml-2"></i></a>
                 </div>
             </div>{{-- /Card --}}
 
-            </div>
+        </div>
     </div>
 
 @endsection

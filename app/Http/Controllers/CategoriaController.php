@@ -20,10 +20,10 @@ class CategoriaController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
-        $categorias= Categoria::where('user_id', Auth::user()->id)->paginate(10);
+        $categorias = Categoria::where('user_id', Auth::user()->id)->paginate(10);
         return view('categorias', compact(['categorias']));
     }
 
@@ -46,18 +46,17 @@ class CategoriaController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'nome'=> [
-                'required','min:3',
-                Rule::unique('categorias')->where('user_id',Auth::id())->where('nome', $request->nome)
+            'nome' => [
+                'required', 'min:3',
+                Rule::unique('categorias')->where('user_id', Auth::id())->where('nome', $request->nome)
             ]
         ]);
 
-        $cat= new Categoria();
-        $cat->nome= $request->nome;
-        $cat->user_id= Auth::user()->id;
+        $cat = new Categoria();
+        $cat->nome = $request->nome;
+        $cat->user_id = Auth::user()->id;
         $cat->save();
-        return redirect()->route('categorias.index','add=success');
-
+        return redirect()->route('categorias.index', 'add=success');
     }
 
     /**
@@ -92,16 +91,16 @@ class CategoriaController extends Controller
     public function update(Request $request)
     {
         $this->validate($request, [
-            'editar_nome'=> 'required|min:3',
-            'id_categoria'=> 'exists:categorias,id'
+            'editar_nome' => 'required|min:3',
+            'id_categoria' => 'exists:categorias,id'
         ]);
 
-        $cat= Categoria::find($request->id_categoria);
+        $cat = Categoria::find($request->id_categoria);
         if (isset($cat)) {
-            $cat->nome= $request->editar_nome;
+            $cat->nome = $request->editar_nome;
             $cat->save();
 
-            return redirect()->route('categorias.index','edit=success');
+            return redirect()->route('categorias.index', 'edit=success');
         }
         return response('Categoria não foi encontrada!', 404);
     }
@@ -114,10 +113,10 @@ class CategoriaController extends Controller
      */
     public function destroy($id)
     {
-        $cat= Categoria::find($id);
+        $cat = Categoria::find($id);
         if (isset($cat) && (Auth::id() == $cat->user_id)) {
             $cat->delete();
-            return redirect()->route('categorias.index','delete=success');
+            return redirect()->route('categorias.index', 'delete=success');
         }
         return response('Categoria não foi encontrada!', 404);
     }

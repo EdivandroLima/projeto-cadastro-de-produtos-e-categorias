@@ -38,12 +38,12 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => public_path(),
-            'url' => env('APP_URL').'/public',
+            'url' => env('APP_URL') . '/public',
             'visibility' => 'public',
         ],
 
         /*
-		'public' => [
+        'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
             'url' => env('APP_URL').'/storage',
